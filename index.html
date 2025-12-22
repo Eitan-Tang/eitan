@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>苏德全 - 简历</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Microsoft Yahei", sans-serif;
+      }
+      body {
+        background: #f5f5f5;
+        padding: 20px;
+      }
+      .resume-container {
+        max-width: 900px;
+        margin: 0 auto;
+        background: #fff;
+        display: flex;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      /* 左侧栏样式 */
+      .left-column {
+        width: 30%;
+        background: #f0f5f9;
+        padding: 20px;
+        text-align: center;
+      }
+      .left-column .avatar {
+        width: 120px;
+        height: 150px;
+        border: 3px solid #fff;
+        margin-bottom: 15px;
+      }
+      .left-column h1 {
+        font-size: 22px;
+        color: #007bb6;
+        margin-bottom: 5px;
+      }
+      .left-column h2 {
+        font-size: 16px;
+        color: #666;
+        margin-bottom: 20px;
+      }
+      .section-title {
+        font-size: 16px;
+        color: #007bb6;
+        border-bottom: 2px solid #007bb6;
+        padding: 10px 0;
+        margin: 20px 0 10px;
+        text-align: left;
+      }
+      .info-list {
+        text-align: left;
+        list-style: none;
+        font-size: 14px;
+        color: #666;
+      }
+      .info-list li {
+        margin: 8px 0;
+        display: flex;
+        align-items: center;
+      }
+      .info-list li span {
+        flex: 1;
+        color: #333;
+        font-weight: 500;
+      }
+      /* 能力评分条 */
+      .ability-item {
+        display: flex;
+        justify-content: space-between;
+        margin: 10px 0;
+        font-size: 14px;
+      }
+      .progress-bar {
+        width: 120px;
+        height: 8px;
+        background: #ddd;
+        border-radius: 4px;
+        overflow: hidden;
+      }
+      .progress {
+        height: 100%;
+        background: #007bb6;
+      }
+      /* 右侧栏样式 */
+      .right-column {
+        width: 70%;
+        padding: 20px;
+      }
+      .right-section {
+        margin-bottom: 30px;
+      }
+      .right-section h2 {
+        font-size: 18px;
+        color: #007bb6;
+        display: flex;
+        align-items: center;
+        margin-bottom: 15px;
+      }
+      .right-section h2::before {
+        content: "";
+        width: 24px;
+        height: 24px;
+        background: #007bb6;
+        border-radius: 50%;
+        margin-right: 8px;
+        display: inline-block;
+      }
+      .project-item,
+      .award-item,
+      .edu-item {
+        margin-bottom: 15px;
+        font-size: 14px;
+      }
+      .project-header,
+      .award-header,
+      .edu-header {
+        display: flex;
+        justify-content: space-between;
+        font-weight: 600;
+        color: #333;
+      }
+      .project-content,
+      .award-content,
+      .edu-content {
+        color: #666;
+        margin-top: 5px;
+        line-height: 1.6;
+      }
+      /* 响应式适配 */
+      @media (max-width: 768px) {
+        .resume-container {
+          flex-direction: column;
+        }
+        .left-column,
+        .right-column {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="resume-container">
+      <!-- 左侧栏 -->
+      <div class="left-column">
+        <img src="avatar.jpg" alt="头像" class="avatar" />
+        <h1>苏德全</h1>
+        <h2>SuDequan</h2>
+
+        <div class="section-title">个人信息 PERSONAL INFO</div>
+        <ul class="info-list">
+          <li><span>生 日：</span>2001/7/3</li>
+          <li><span>毕业学校：</span>济南大学</li>
+          <li><span>学 历：</span>本科</li>
+          <li><span>政治面貌：</span>群众</li>
+          <li><span>专 业：</span>自动化</li>
+        </ul>
+
+        <div class="section-title">联系方式 CONTACT INFO</div>
+        <ul class="info-list">
+          <li><span>手 机：</span>19805834478</li>
+          <li><span>邮 箱：</span>tangbichentudou@gmail.com</li>
+          <li><span>地 址：</span>山东省济南市济南大学北苑</li>
+        </ul>
+
+        <div class="section-title">个人能力 PERSONAL ABILITY</div>
+        <div class="ability-list">
+          <div class="ability-item">
+            <span>团队合作：</span>
+            <div class="progress-bar">
+              <div class="progress" style="width: 80%"></div>
+            </div>
+          </div>
+          <div class="ability-item">
+            <span>英语水平：</span>
+            <div class="progress-bar">
+              <div class="progress" style="width: 60%"></div>
+            </div>
+          </div>
+          <div class="ability-item">
+            <span>专业知识：</span>
+            <div class="progress-bar">
+              <div class="progress" style="width: 90%"></div>
+            </div>
+          </div>
+          <div class="ability-item">
+            <span>实践能力：</span>
+            <div class="progress-bar">
+              <div class="progress" style="width: 85%"></div>
+            </div>
+          </div>
+          <div class="ability-item">
+            <span>OFFICE：</span>
+            <div class="progress-bar">
+              <div class="progress" style="width: 70%"></div>
+            </div>
+          </div>
+          <div class="ability-item">
+            <span>协调合作：</span>
+            <div class="progress-bar">
+              <div class="progress" style="width: 75%"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 右侧栏 -->
+      <div class="right-column">
+        <div class="right-section">
+          <h2>项目经验</h2>
+          <div class="project-item">
+            <div class="project-header">
+              <span>2023.08-08</span>
+              <span>山东省大学生电子设计竞赛三等奖</span>
+            </div>
+            <div class="project-content">
+              <p>
+                负责人 |
+                担任团队负责人完成运动目标控制与自动跟踪系统的设计，主要负责代码编写，电路设计焊接，调试硬件设备和元器件清单罗列。
+              </p>
+            </div>
+          </div>
+          <div class="project-item">
+            <div class="project-header">
+              <span>2022.09-09</span>
+              <span>第十五届恒拓杯电子电路设计大赛一等奖及第一名</span>
+            </div>
+            <div class="project-content">
+              <p>
+                负责人 |
+                担任团队负责人完成声源定位跟踪系统的设计，主要负责代码编写，电路设计焊接，调试电路和元器件采购。
+              </p>
+            </div>
+          </div>
+          <div class="project-item">
+            <div class="project-header">
+              <span>2021.09-10</span>
+              <span>山东省大学生智能制造大赛二等奖</span>
+            </div>
+            <div class="project-content">
+              <p>
+                负责人 |
+                担任团队负责人完成智能选举称重机器人的设计，主要负责代码编写，电路设计焊接，调试机器人和元器件采购。
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="right-section">
+          <h2>竞赛获奖</h2>
+          <div class="award-item">
+            <div class="award-header">
+              <span>2022.09-2023.07</span>
+              <span>济南大学第十五届恒拓杯一等奖及第一名</span>
+            </div>
+          </div>
+          <div class="award-item">
+            <div class="award-header">
+              <span>2023.09-2024.07</span>
+              <span>山东省大学生电子设计竞赛三等奖</span>
+            </div>
+          </div>
+          <div class="award-item">
+            <div class="award-header">
+              <span>2021.09-2022.07</span>
+              <span>山东省大学生智能制造大赛二等奖</span>
+            </div>
+          </div>
+          <div class="award-item">
+            <div class="award-header">
+              <span>2021.09-2022.07</span>
+              <span>2021中国工程机器人大赛二等奖</span>
+            </div>
+          </div>
+          <div class="award-item">
+            <div class="award-header">
+              <span>2021.09-2022.07</span>
+              <span>济南大学第五届节能降耗大赛二等奖</span>
+            </div>
+          </div>
+          <div class="award-item">
+            <div class="award-header">
+              <span>2021.09-2022.07</span>
+              <span>济南大学第五届节能降耗大赛三等奖</span>
+            </div>
+          </div>
+          <div class="award-item">
+            <div class="award-header">
+              <span>2020.09-2021.07</span>
+              <span>全国大学生电子商务挑战赛济南大学一等奖</span>
+            </div>
+          </div>
+          <div class="award-item">
+            <div class="award-header">
+              <span>2020.09-2021.07</span>
+              <span>济南大学第七届“互联网+”大学生创新创业大赛铜奖</span>
+            </div>
+          </div>
+          <div class="award-item">
+            <div class="award-header">
+              <span>2021.09-2022.07</span>
+              <span>济南大学2021年度科研立项结题</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="right-section">
+          <h2>教育背景</h2>
+          <div class="edu-item">
+            <div class="edu-header">
+              <span>2020 - 2024</span>
+              <span>济南大学 本科</span>
+            </div>
+            <div class="edu-content">
+              <p>
+                自动化 |
+                主修课程：自动控制原理，PLC，现代控制理论，计算机控制原理，数字电子技术，模拟电子技术，电路原理，C++面向对象程序设计，C语言程序设计，微机原理及应用等
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

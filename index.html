@@ -183,7 +183,244 @@
           padding: 20px;
         }
       }
+
+      /* 视频播放模块样式 */
+      .video-link {
+        cursor: pointer;
+        color: #005a9c;
+        text-decoration: underline;
+        transition: color 0.3s ease;
+      }
+
+      .video-link:hover {
+        color: #003d6b;
+      }
+
+      /* 视频弹窗 */
+      .video-modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        animation: fadeIn 0.3s ease;
+      }
+
+      .video-modal.active {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .video-modal-content {
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        max-width: 90%;
+        max-height: 90vh;
+        overflow: hidden;
+        position: relative;
+        animation: slideIn 0.3s ease;
+      }
+
+      .video-modal-header {
+        padding: 15px 20px;
+        border-bottom: 1px solid #e0e0e0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .video-modal-title {
+        font-size: 18px;
+        font-weight: bold;
+        color: #333;
+      }
+
+      .video-modal-close {
+        background: none;
+        border: none;
+        font-size: 24px;
+        cursor: pointer;
+        color: #666;
+        padding: 0;
+        width: 30px;
+        height: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .video-modal-close:hover {
+        color: #333;
+      }
+
+      .video-modal-body {
+        padding: 20px;
+        display: flex;
+        justify-content: center;
+      }
+
+      .video-modal-body video {
+        max-width: 100%;
+        max-height: 70vh;
+        border-radius: 4px;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      @keyframes slideIn {
+        from {
+          transform: scale(0.9);
+          opacity: 0;
+        }
+        to {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
     </style>
+    <script>
+      /**
+       * 视频播放模块
+       * 提供模块化的视频播放功能，支持弹窗展示视频
+       */
+      const VideoPlayer = (function() {
+        // 私有变量
+        let currentModal = null;
+
+        /**
+         * 创建视频弹窗
+         * @param {string} videoPath - 视频文件路径
+         * @param {string} title - 弹窗标题（可选）
+         * @returns {HTMLElement} - 弹窗DOM元素
+         */
+        function createModal(videoPath, title = '视频播放') {
+          const modal = document.createElement('div');
+          modal.className = 'video-modal';
+
+          modal.innerHTML = `
+            <div class="video-modal-content">
+              <div class="video-modal-header">
+                <div class="video-modal-title">${title}</div>
+                <button class="video-modal-close" aria-label="关闭">×</button>
+              </div>
+              <div class="video-modal-body">
+                <video controls>
+                  <source src="${videoPath}" type="video/mp4">
+                  您的浏览器不支持视频标签
+                </video>
+              </div>
+            </div>
+          `;
+
+          return modal;
+        }
+
+        /**
+         * 打开视频播放窗口
+         * @param {string} videoPath - 视频文件路径
+         * @param {string} title - 弹窗标题（可选）
+         */
+        function open(videoPath, title = '视频播放') {
+          // 关闭已存在的弹窗
+          if (currentModal) {
+            close();
+          }
+
+          // 创建新弹窗
+          currentModal = createModal(videoPath, title);
+          document.body.appendChild(currentModal);
+
+          // 添加到DOM后，立即触发动画
+          setTimeout(() => {
+            currentModal.classList.add('active');
+          }, 10);
+
+          // 绑定关闭事件
+          const closeBtn = currentModal.querySelector('.video-modal-close');
+          closeBtn.addEventListener('click', close);
+
+          // 点击弹窗背景关闭
+          currentModal.addEventListener('click', function(e) {
+            if (e.target === this) {
+              close();
+            }
+          });
+
+          // ESC键关闭
+          const escapeHandler = function(e) {
+            if (e.key === 'Escape') {
+              close();
+            }
+          };
+          document.addEventListener('keydown', escapeHandler);
+
+          // 保存处理函数以便后续移除
+          currentModal.escapeHandler = escapeHandler;
+        }
+
+        /**
+         * 关闭视频播放窗口
+         */
+        function close() {
+          if (!currentModal) return;
+
+          currentModal.classList.remove('active');
+
+          // 等待动画完成后移除DOM
+          setTimeout(() => {
+            if (currentModal && currentModal.parentNode) {
+              document.removeEventListener('keydown', currentModal.escapeHandler);
+              currentModal.parentNode.removeChild(currentModal);
+              currentModal = null;
+            }
+          }, 300);
+        }
+
+        /**
+         * 初始化所有视频链接
+         * 自动为带有 .video-link 类的元素绑定点击事件
+         */
+        function init() {
+          const videoLinks = document.querySelectorAll('.video-link');
+
+          videoLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+              e.preventDefault();
+              const videoPath = this.getAttribute('data-video');
+              const title = this.textContent;
+
+              if (videoPath) {
+                open(videoPath, title);
+              }
+            });
+          });
+        }
+
+        // 公共API
+        return {
+          open: open,
+          close: close,
+          init: init
+        };
+      })();
+
+      // 页面加载完成后初始化
+      document.addEventListener('DOMContentLoaded', function() {
+        VideoPlayer.init();
+      });
+    </script>
   </head>
   <body>
     <div class="resume-container">
@@ -321,7 +558,7 @@
           <div class="award-item">
             <div class="award-header">
               <span>2021.09-2022.07</span>
-              <span>2021中国工程机器人大赛二等奖</span>
+              <span class="video-link" data-video="机器人.mp4">2021中国工程机器人大赛二等奖</span>
             </div>
           </div>
           <div class="award-item">
